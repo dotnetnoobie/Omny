@@ -1,0 +1,42 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@if (Programs == null)
+{
+    <div>
+        Loading...
+    </div>
+}
+else
+{
+    foreach (var item in Programs)
+    {
+        <div class="mb-5">
+            @item.Description
+        </div>
+
+
+    }
+}
+
+
+@code{
+
+    [Inject]
+    public Omny.Client Omny { get; set; }
+
+    public IList<Omny.Models.Clip> Programs { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var clips  = await Omny.Clips();
+
+        Programs = clips.List;
+    }
+
+}
