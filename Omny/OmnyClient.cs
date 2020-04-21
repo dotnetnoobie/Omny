@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Omny
 {
-    public class Client
+    public class OmnyClient : IOmnyClient
     {
         private readonly HttpClient httpClient;
 
-        public Client(HttpClient httpClient)
+        public OmnyClient(HttpClient httpClient)
         {
             this.httpClient = httpClient;
         }
@@ -52,6 +52,6 @@ namespace Omny
         public async Task<Transcript> Transcript(string orgId, string clipId)
         {
             return await httpClient.GetFromJsonAsync<Transcript>($"https://omny.fm/api/orgs/{orgId}/clips/{clipId}/transcript");
-        } 
+        }
     }
 }

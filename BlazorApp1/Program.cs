@@ -1,10 +1,9 @@
 using System;
 using System.Net.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Text;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Omny;
 
 namespace BlazorApp1
 {
@@ -17,7 +16,7 @@ namespace BlazorApp1
 
             builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddTransient<Omny.Client>();
+            builder.Services.AddOmny();
 
             await builder.Build().RunAsync();
         }
